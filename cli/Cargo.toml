@@ -4,5 +4,5 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
-clap = "4.5.1"
-assert_cmd = "2.0.13"
+clap = { workspace = true }
+assert_cmd = { workspace = true }

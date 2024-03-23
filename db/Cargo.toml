@@ -4,6 +4,6 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
-sea-orm = { version = "0.12", features = [ "sqlx-sqlite", "runtime-tokio-rustls", "macros" ] }
-tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
-log = "0.4.19"
+sea-orm = { workspace = true, features = ["sqlx-sqlite", "runtime-tokio-rustls", "macros"] }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+log = { workspace = true }
