@@ -1,31 +1,27 @@
 name: ci
+
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  test:
+
+  ci:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
       - uses: Swatinem/rust-cache@v2
-        with:
-          cache-all-crates: "true"
+      - name: Format
+        run: cargo fmt --check
+      - name: Check
+        run: cargo check
+      - name: Clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings -D clippy::unwrap_used -D clippy::expect_used
       - uses: taiki-e/install-action@cargo-llvm-cov
       - run: |
-          cargo clippy --all-targets --all-features -- -D warnings -D clippy::unwrap_used
-          cargo llvm-cov test | tee cov.txt
-          echo "COVERAGE=$(cat cov.txt | grep "TOTAL" | awk '{print $4}' | sed 's/%//g')" >> $GITHUB_ENV
-      # - name: cov-badge
-      #   uses: schneegans/dynamic-badges-action@v1.7.0
-      #   with:
-      #     auth: ${{ secrets.THEBADGE }}
-      #     gistID: d86fe4168b61872f7e63d85ce3c9fea6
-      #     filename: cov.json
-      #     label: coverage
-      #     message: ${{env.COVERAGE}}%
-      #     valColorRange: ${{env.COVERAGE}}
-      #     minColorRange: 50
-      #     maxColorRange: 80
+          cargo llvm-cov test
