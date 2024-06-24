@@ -31,6 +31,18 @@ pub fn port() -> &'static u16 {
     }
 }
 
+#[allow(dead_code)]
+pub fn db_url() -> &'static String {
+    static URL: OnceLock<String> = OnceLock::new();
+    match var("DB_URL") {
+        Ok(url) => URL.get_or_init(|| url),
+        Err(e) => {
+            eprintln!("Error: could not find env var DB_URL {}", e);
+            panic!()
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -65,6 +77,22 @@ mod tests {
     fn test_port_panic() {
         with_var("ACTIX_WEB_PORT", None as Option<&str>, || {
             address();
+        });
+    }
+
+    #[test]
+    fn test_db_url() {
+        with_var("DB_URL", Some("sqlite://db.sqlite?mode=rwc"), || {
+            assert_eq!(db_url(), "sqlite://db.sqlite?mode=rwc");
+            assert_ne!(db_url(), ":D");
+        });
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_db_url_panic() {
+        with_var("DB_URL", None as Option<&str>, || {
+            db_url();
         });
     }
 }

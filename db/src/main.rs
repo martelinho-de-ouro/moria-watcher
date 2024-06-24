@@ -1,8 +1,10 @@
 use sea_orm::{ConnectOptions, Database, DatabaseConnection, DbErr};
 
+use common::vars;
+
 #[tokio::main]
 async fn main() -> Result<(), DbErr> {
-    let mut opt = ConnectOptions::new("sqlite://db.sqlite?mode=rwc");
+    let mut opt = ConnectOptions::new(vars::db_url());
 
     opt.max_connections(1)
         .min_connections(1)

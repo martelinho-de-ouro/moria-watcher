@@ -4,6 +4,7 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
+common = { workspace = true }
+log = { workspace = true }
 sea-orm = { workspace = true, features = ["sqlx-sqlite", "runtime-tokio-rustls", "macros"] }
 tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
-log = { workspace = true }
