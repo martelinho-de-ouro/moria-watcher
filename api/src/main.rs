@@ -4,7 +4,7 @@ use dotenv::dotenv;
 use std::env::{set_var, var_os};
 use std::io::Result;
 
-mod constants;
+mod vars;
 mod routes;
 
 #[actix_web::main]
@@ -18,8 +18,8 @@ async fn main() -> Result<()> {
     dotenv().ok();
     env_logger::init();
 
-    let port = constants::port();
-    let address = constants::address().as_str();
+    let port = vars::port();
+    let address = vars::address().as_str();
 
     HttpServer::new(|| {
         App::new()
