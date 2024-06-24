@@ -4,7 +4,7 @@ use dotenv::dotenv;
 use std::env::{set_var, var_os};
 use std::io::Result;
 
-mod vars;
+use common::vars;
 mod routes;
 
 #[actix_web::main]
@@ -22,9 +22,7 @@ async fn main() -> Result<()> {
     let address = vars::address().as_str();
 
     HttpServer::new(|| {
-        App::new()
-            .wrap(Logger::default())
-            .configure(routes::config)
+        App::new().wrap(Logger::default()).configure(routes::config)
     })
     .bind((address, *port))?
     .run()

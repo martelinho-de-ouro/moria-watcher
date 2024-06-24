@@ -4,4 +4,3 @@ use actix_web::{get, web, Responder};
 pub async fn greet(name: web::Path<String>) -> impl Responder {
     format!("Hello {name}!")
 }
-
