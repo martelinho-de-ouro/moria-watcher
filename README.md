@@ -8,12 +8,15 @@ no one knows the name of this thing.
 
 ### Dependencies
 
-* `clap`
+* `actix-web`
 * `assert_cmd`
-* `toml`
-* `log`
 * `async-std`
-* `sea-orm`
+* `clap`
+* `dotenv`
+* `env_logger`
+* `log`
 * `sea-orm-migration`
+* `sea-orm`
+* `serde_json`
 * `tokio`
-
+* `toml`
