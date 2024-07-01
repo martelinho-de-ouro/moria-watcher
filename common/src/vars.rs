@@ -1,7 +1,6 @@
 use std::env::var;
 use std::sync::OnceLock;
 
-#[allow(dead_code)]
 pub fn address() -> &'static String {
     static ADDRESS: OnceLock<String> = OnceLock::new();
     match var("ACTIX_WEB_ADDRESS") {
@@ -13,7 +12,6 @@ pub fn address() -> &'static String {
     }
 }
 
-#[allow(dead_code)]
 pub fn port() -> &'static u16 {
     static PORT: OnceLock<u16> = OnceLock::new();
     match var("ACTIX_WEB_PORT") {
@@ -31,7 +29,6 @@ pub fn port() -> &'static u16 {
     }
 }
 
-#[allow(dead_code)]
 pub fn db_url() -> &'static String {
     static URL: OnceLock<String> = OnceLock::new();
     match var("DB_URL") {

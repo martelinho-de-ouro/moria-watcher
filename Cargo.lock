@@ -133,9 +133,9 @@ dependencies = [
 
 [[package]]
 name = "actix-web"
-version = "4.7.0"
+version = "4.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5d6316df3fa569627c98b12557a8b6ff0674e5be4bb9b5e4ae2550ddb4964ed6"
+checksum = "1988c02af8d2b718c05bc4aeb6a66395b7cdf32858c2c71131e5637a8c05a9ff"
 dependencies = [
  "actix-codec",
  "actix-http",
@@ -328,8 +328,10 @@ version = "0.0.1"
 dependencies = [
  "actix-web",
  "common",
- "dotenv",
+ "db",
+ "dotenvy",
  "env_logger",
+ "sea-orm",
  "serde_json",
 ]
 
@@ -867,8 +869,9 @@ checksum = "acbf1af155f9b9ef647e42cdc158db4b64a1b61f743629225fde6f3e0be2a7c7"
 name = "common"
 version = "0.0.1"
 dependencies = [
- "dotenv",
+ "dotenvy",
  "env_logger",
+ "sea-orm",
  "temp-env",
 ]
 
@@ -1046,12 +1049,6 @@ name = "doc-comment"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fea41bba32d969b513997752735605054bc0dfa92b4c56bf1189f2e174be7a10"
-
-[[package]]
-name = "dotenv"
-version = "0.15.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "77c90badedccf4105eca100756a0b1289e191f6fcbdadd3cee1d2f614f97da8f"
 
 [[package]]
 name = "dotenvy"
