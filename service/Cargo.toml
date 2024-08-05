@@ -1,0 +1,20 @@
+[package]
+name = "service"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+entity = { workspace = true }
+sea-orm = { workspace = true, features = ["mock"] }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["macros", "rt"] }
+sea-orm = { workspace = true, features = ["mock"] }
+uuid = { workspace = true }
+
+[features]
+mock = ["sea-orm/mock"]
+
+[[test]]
+name = "mock"
+required-features = ["mock"]
