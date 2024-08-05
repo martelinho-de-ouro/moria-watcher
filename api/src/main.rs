@@ -1,5 +1,5 @@
 use actix_web::middleware::Logger;
-use actix_web::{web, App, HttpServer};
+use actix_web::{App, HttpServer};
 use std::env::{self, set_var, var_os};
 
 use common::vars;
@@ -40,16 +40,15 @@ async fn main() -> std::io::Result<()> {
     let port = vars::port();
     let address = vars::address().as_str();
 
-    let db = match db::db::connection().await {
-        Ok(d) => d,
-        Err(_) => {
-            panic!("Failed to get connection")
-        }
-    };
+    // let db = match db::db::connection().await {
+    //     Ok(d) => d,
+    //     Err(_) => {
+    //         panic!("Failed to get connection")
+    //     }
+    // };
 
     HttpServer::new(move || {
         App::new()
-            .app_data(web::Data::new(db.clone()))
             .wrap(Logger::default())
             .configure(routes::config)
     })
