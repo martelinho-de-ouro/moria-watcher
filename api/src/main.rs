@@ -48,9 +48,7 @@ async fn main() -> std::io::Result<()> {
     // };
 
     HttpServer::new(move || {
-        App::new()
-            .wrap(Logger::default())
-            .configure(routes::config)
+        App::new().wrap(Logger::default()).configure(routes::config)
     })
     .bind((address, *port))?
     .run()
