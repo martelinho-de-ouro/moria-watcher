@@ -1,0 +1,8 @@
+FROM postgres:16.3
+
+RUN apt update && apt install -y net-tools neovim sudo procps
+
+RUN echo 'cat /etc/motd' >> /etc/bash.bashrc
+COPY ./motd /etc/motd
+
+
